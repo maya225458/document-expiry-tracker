@@ -14,7 +14,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://document-expiry-tracker-s5f3.onrender.com/api/auth/login",
         {
           email,
           password,
@@ -22,13 +22,9 @@ function Login() {
       );
 
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(response.data.user)
-      );
+      localStorage.setItem("user", JSON.stringify(response.data.user));
 
       alert("Login successful!");
-
       navigate("/dashboard");
     } catch (error) {
       alert(
@@ -41,13 +37,10 @@ function Login() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-
         <h1>Document Expiry Tracker</h1>
-
         <h2>Login</h2>
 
         <form onSubmit={handleLogin}>
-
           <label>Email</label>
 
           <input
@@ -68,13 +61,9 @@ function Login() {
             required
           />
 
-          <button
-            type="submit"
-            className="auth-btn"
-          >
+          <button type="submit" className="auth-btn">
             Login
           </button>
-
         </form>
 
         <p className="auth-text">
@@ -87,7 +76,6 @@ function Login() {
         >
           Create Account
         </button>
-
       </div>
     </div>
   );

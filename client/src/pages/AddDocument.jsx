@@ -17,7 +17,7 @@ function AddDocument() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/documents",
+        "https://document-expiry-tracker-s5f3.onrender.com/api/documents",
         {
           title,
           category,
@@ -31,7 +31,6 @@ function AddDocument() {
       );
 
       alert("Document added successfully!");
-
       navigate("/dashboard");
     } catch (error) {
       alert(
@@ -44,13 +43,10 @@ function AddDocument() {
   return (
     <div className="add-page">
       <div className="add-card">
-
         <h1>Document Expiry Tracker</h1>
-
         <h2>Add Document</h2>
 
         <form onSubmit={handleSubmit}>
-
           <label>Document Name</label>
 
           <input
@@ -86,13 +82,9 @@ function AddDocument() {
             required
           />
 
-          <button
-            type="submit"
-            className="add-btn"
-          >
+          <button type="submit" className="add-btn">
             Add Document
           </button>
-
         </form>
 
         <button
@@ -101,7 +93,6 @@ function AddDocument() {
         >
           Back to Dashboard
         </button>
-
       </div>
     </div>
   );

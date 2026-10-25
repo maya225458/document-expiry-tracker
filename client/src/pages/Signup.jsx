@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../Auth.css";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ function Signup() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://document-expiry-tracker-s5f3.onrender.com/api/auth/register",
         {
           name,
           email,
@@ -27,55 +28,60 @@ function Signup() {
     } catch (error) {
       alert(
         error.response?.data?.message ||
-        "Registration failed"
+          "Registration failed"
       );
     }
   };
 
   return (
-    <div>
-      <h1>Document Expiry Tracker</h1>
-      <h2>Create Account</h2>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h1>Document Expiry Tracker</h1>
+        <h2>Create Account</h2>
 
-      <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <form onSubmit={handleSignup}>
+          <label>Name</label>
 
-        <br /><br />
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          <label>Email</label>
 
-        <br /><br />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <label>Password</label>
 
-        <br /><br />
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <button type="submit">Sign Up</button>
-      </form>
+          <button type="submit" className="auth-btn">
+            Sign Up
+          </button>
+        </form>
 
-      <br />
-
-      <button onClick={() => navigate("/")}>
-        Back to Login
-      </button>
+        <button
+          className="auth-secondary"
+          onClick={() => navigate("/")}
+        >
+          Back to Login
+        </button>
+      </div>
     </div>
   );
 }
